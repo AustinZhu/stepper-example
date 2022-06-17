@@ -1,6 +1,7 @@
 import { Stepper, Step, StepLabel, StepContent, Stack, Box, Collapse } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { CircleOutlined, CheckCircleOutlined } from '@mui/icons-material';
+import {DateTime} from 'luxon'
 import React from 'react';
 
 const PREFIX = 'Stepper';
@@ -48,10 +49,11 @@ function getStepContent(step: StepLabelProps) {
 }
 
 function getStepLabel(step: StepLabelProps) {
+  const datetime = step.datetime ? DateTime.fromJSDate(step.datetime).toFormat('yyyy-MM-dd HH:mm:ss') : '';
   return <Stack direction="row" spacing={2}>
     <Box component='b' sx={{ width: '10em' }}>{step.label}</Box>
     <Box component='b' sx={{ width: '5em' }}>{step.status ?? '未通过'}</Box>
-    <Box component='p' sx={{ width: '20em' }}>{step.datetime?.toLocaleString() ?? ''}</Box>
+    <Box component='p' sx={{ width: '20em' }}>{datetime}</Box>
   </Stack>
 }
 
@@ -77,14 +79,13 @@ export default function (props: StepperProps) {
 
   return (
     <Root className={classes.root}>
-      <h1>KYC Checking Process</h1>
       <Stepper activeStep={activeStep} orientation="vertical">
         {steps.map((step, index) => (
           <Step key={step.label.key}>
             <StepLabel StepIconComponent={index < activeStep ? CheckIcon : CircleOutlined}>
               {step.label}
             </StepLabel>
-            <StepContent TransitionProps={{in: true}}>{step.content}</StepContent>
+            <StepContent TransitionProps={{ in: true }}>{step.content}</StepContent>
           </Step>
         ))}
       </Stepper>

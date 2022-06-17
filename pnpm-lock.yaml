@@ -13,10 +13,12 @@ specifiers:
   '@storybook/builder-vite': ^0.1.36
   '@storybook/react': ^6.5.9
   '@storybook/testing-library': ^0.0.13
+  '@types/luxon': ^2.3.2
   '@types/react': ^18.0.0
   '@types/react-dom': ^18.0.0
   '@vitejs/plugin-react': ^1.3.0
   babel-loader: ^8.2.5
+  luxon: ^2.4.0
   react: ^18.0.0
   react-dom: ^18.0.0
   theme-ui: ^0.14.6
@@ -28,6 +30,7 @@ dependencies:
   '@emotion/styled': 11.9.3_z6sshxvzcimlmepo2iir7rtg4a
   '@mui/icons-material': 5.8.4_yjs5w5ijf2lxnmntsh4ygqsuyu
   '@mui/material': 5.8.4_7adjrfzx5dniobmnpjuscd5lfq
+  luxon: 2.4.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
 
@@ -40,6 +43,7 @@ devDependencies:
   '@storybook/builder-vite': 0.1.36_xslqlz6g4vjrozqh5rqivfcrom
   '@storybook/react': 6.5.9_mahvgggh6brnflayvdthdzcgme
   '@storybook/testing-library': 0.0.13_biqbaboplfbrettd7655fr4n2y
+  '@types/luxon': 2.3.2
   '@types/react': 18.0.12
   '@types/react-dom': 18.0.5
   '@vitejs/plugin-react': 1.3.2
@@ -3764,6 +3768,10 @@ packages:
 
   /@types/lodash/4.14.182:
     resolution: {integrity: sha512-/THyiqyQAP9AfARo4pF+aCGcyiQ94tX/Is2I7HofNRqoYLgN1PBoOWu2/zTA5zMxzP5EFutMtWtGAFRKUe961Q==}
+    dev: true
+
+  /@types/luxon/2.3.2:
+    resolution: {integrity: sha512-WOehptuhKIXukSUUkRgGbj2c997Uv/iUgYgII8U7XLJqq9W2oF0kQ6frEznRQbdurioz+L/cdaIm4GutTQfgmA==}
     dev: true
 
   /@types/mdast/3.0.10:
@@ -8483,6 +8491,11 @@ packages:
     dependencies:
       yallist: 4.0.0
     dev: true
+
+  /luxon/2.4.0:
+    resolution: {integrity: sha512-w+NAwWOUL5hO0SgwOHsMBAmZ15SoknmQXhSO0hIbJCAmPKSsGeK8MlmhYh2w6Iib38IxN2M+/ooXWLbeis7GuA==}
+    engines: {node: '>=12'}
+    dev: false
 
   /lz-string/1.4.4:
     resolution: {integrity: sha512-0ckx7ZHRPqb0oUm8zNr+90mtf9DQB60H1wMCjBtfi62Kl3a7JbHob6gA2bC+xRvZoOL+1hzUK8jeuEIQE8svEQ==}
