@@ -1,4 +1,4 @@
-import { Stepper, Step, StepLabel, StepContent, Typography, Paper, Button, Stack, Box } from '@mui/material';
+import { Stepper, Step, StepLabel, StepContent, Stack, Box, Collapse } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { CircleOutlined, CheckCircleOutlined } from '@mui/icons-material';
 import React from 'react';
@@ -16,6 +16,7 @@ interface StepLabelProps {
   label: string;
   status?: '-' | '通过' | '未通过' | '未开始' | '进行中';
   datetime?: Date;
+  content?: JSX.Element;
 }
 
 interface StepperProps {
@@ -42,8 +43,8 @@ const Root = styled('div')(({ theme }) => ({
   }
 }));
 
-function getStepContent(step: number) {
-  return '';
+function getStepContent(step: StepLabelProps) {
+  return step.content ?? <Box></Box>;
 }
 
 function getStepLabel(step: StepLabelProps) {
@@ -56,7 +57,7 @@ function getStepLabel(step: StepLabelProps) {
 
 export default function (props: StepperProps) {
   const activeStep = props.activeStep ?? 0;
-  const stepLabels = props.steps.map((step, index) => {
+  const steps = props.steps.map((step, index) => {
     if (!step.status && index < activeStep) {
       step.status = '通过';
     }
@@ -66,7 +67,10 @@ export default function (props: StepperProps) {
     if (!step.status && index > activeStep) {
       step.status = '未开始';
     }
-    return getStepLabel(step);
+    return {
+      label: getStepLabel(step),
+      content: getStepContent(step),
+    };
   });
 
   const CheckIcon = () => <CheckCircleOutlined color="primary" />;
@@ -75,12 +79,12 @@ export default function (props: StepperProps) {
     <Root className={classes.root}>
       <h1>KYC Checking Process</h1>
       <Stepper activeStep={activeStep} orientation="vertical">
-        {stepLabels.map((label, index) => (
-          <Step key={label.key}>
+        {steps.map((step, index) => (
+          <Step key={step.label.key}>
             <StepLabel StepIconComponent={index < activeStep ? CheckIcon : CircleOutlined}>
-              {label}
+              {step.label}
             </StepLabel>
-            <StepContent>{getStepContent(index)}</StepContent>
+            <StepContent TransitionProps={{in: true}}>{step.content}</StepContent>
           </Step>
         ))}
       </Stepper>

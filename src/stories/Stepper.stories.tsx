@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Stepper from './Stepper';
+import { Typography } from '@mui/material';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -17,7 +18,7 @@ export const Example = Template.bind({});
 Example.args = {
     steps: [
         {label: '已提交', status: '-', datetime: new Date()},
-        {label: 'Risk初审', datetime: new Date()},
+        {label: 'Risk初审', datetime: new Date(), content: <Typography variant="body2">系统自动</Typography>},
         {label: '资料审查'},
         {label: '姓名审查'},
         {label: 'AML审查'},
